@@ -7,7 +7,7 @@ namespace Checkout
 {
     public class Checkout
     {
-        public decimal GetTotal(string skus)
+        public int GetTotal(string skus)
         {
             throw new NotImplementedException();
         }
