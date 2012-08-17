@@ -58,7 +58,6 @@
     <Compile Include="SingleMessageListener.cs" />
     <Compile Include="XmppConnectionWrapper.cs" />
     <Compile Include="XMPPException.cs" />
-    <Compile Include="XmppStrawGrasp.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GOOS\GOOS.csproj">
