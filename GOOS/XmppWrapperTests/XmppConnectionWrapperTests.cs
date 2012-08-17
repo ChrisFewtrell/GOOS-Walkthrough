@@ -26,7 +26,7 @@ namespace XmppWrapperTests
         private static void WaitForAuthentication(ITestableConnection conn)
         {
             bool waitForAuthentication = conn.WaitForAuthentication(5000);
-            Assert.That(waitForAuthentication, Is.True, "Did not authenticate within given time span");
+            Assert.That(waitForAuthentication, Is.True, "Did not authenticate within given time span... are you running a server?  Have you added " + ValidUserName + " as a user??");
         }
 
         private static void WaitForMessageReceived(ITestableConnection conn)
@@ -80,7 +80,7 @@ namespace XmppWrapperTests
         }
 
         [Test]
-        public void TestSendingMessage_ToYourSelf_ShouldCauseMessageToBeReceieved()
+        public void TestSendingMessage_ToYourSelf_ShouldCauseLastMessageToBeSet()
         {
             ITestableConnection conn = new XmppConnectionWrapper(ValidUserName, ValidPassword, Server);
             conn.Open();
