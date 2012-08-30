@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using XmppWrapper;
 using Message = XmppWrapper.Message;
 
@@ -24,13 +25,13 @@ namespace XmppWrapperTests
         
         private static void WaitForAuthentication(ITestableConnection conn)
         {
-            bool waitForAuthentication = conn.WaitForAuthentication(5000);
+            bool waitForAuthentication = conn.WaitForAuthentication(TimeSpan.FromSeconds(5));
             Assert.That(waitForAuthentication, Is.True, "Did not authenticate within given time span... are you running a server?  Have you added " + ValidUserName + " as a user??");
         }
 
         private static void WaitForMessageReceived(ITestableConnection conn)
         {
-            bool wait = conn.WaitForMessageRecieved(5000);
+            bool wait = conn.WaitForMessageRecieved(TimeSpan.FromSeconds(5));
             Assert.That(wait, Is.True, "Did not receive message within given time span");
         }
 

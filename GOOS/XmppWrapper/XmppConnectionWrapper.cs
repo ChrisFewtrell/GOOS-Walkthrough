@@ -10,7 +10,7 @@ using agsXMPP.protocol.iq.vcard;
 
 namespace XmppWrapper
 {
-    public class XmppConnectionWrapper : ITestableConnection
+    internal class XmppConnectionWrapper : ITestableConnection
     {
         private readonly XmppClientConnection xmppCon;
         private readonly Jid jid;
@@ -58,14 +58,14 @@ namespace XmppWrapper
             messageReceivedEvent = new ManualResetEvent(false);
         }
 
-        bool ITestableConnection.WaitForAuthentication(int timeToWaitInMilliseconds)
+        bool ITestableConnection.WaitForAuthentication(TimeSpan timeSpan)
         {
-            return connectionEstablishedEvent.WaitOne(timeToWaitInMilliseconds);
+            return connectionEstablishedEvent.WaitOne(timeSpan);
         }
 
-        bool ITestableConnection.WaitForMessageRecieved(int timeToWaitInMilliseconds)
+        bool ITestableConnection.WaitForMessageRecieved(TimeSpan timeSpan)
         {
-            return messageReceivedEvent.WaitOne(timeToWaitInMilliseconds);
+            return messageReceivedEvent.WaitOne(timeSpan);
         }
 
         void ITestableConnection.ResetMessageReceivedSemaphore()

@@ -1,3 +1,4 @@
+using System;
 using agsXMPP.protocol.client;
 
 namespace XmppWrapper
@@ -8,14 +9,13 @@ namespace XmppWrapper
         /// Waits for the connection to either succeed or fail to authenticate
         /// <see cref="ConnectionStatus.Authenticated"/>,
         /// </summary>
-        /// <param name="timeToWaitInMilliseconds"></param>
-        bool WaitForAuthentication(int timeToWaitInMilliseconds);
+        bool WaitForAuthentication(TimeSpan timeSpan);
         /// <summary>
         /// Waits for a message to be received.
         /// </summary>
         /// <param name="timeToWaitInMilliseconds"></param>
         /// <returns></returns>
-        bool WaitForMessageRecieved(int timeToWaitInMilliseconds);
+        bool WaitForMessageRecieved(TimeSpan timeSpan);
 
         void ResetMessageReceivedSemaphore();
 
