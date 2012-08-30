@@ -1,5 +1,4 @@
 using System;
-using agsXMPP;
 
 namespace XmppWrapper
 {
@@ -7,7 +6,7 @@ namespace XmppWrapper
     {
         ConnectionStatus Status{get;}
         void Open();
-        void SendMessage(Jid to, string subject, string message);
+        void SendMessage(Identifier to, string subject, string message);
         void Close();
         event EventHandler<MessageEventArgs> MessageReceived;
     }

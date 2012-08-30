@@ -99,13 +99,13 @@ namespace XmppWrapper
             connectionEstablishedEvent.Set();
         }
 
-        private void xmppCon_OnMessage(object sender, Message msg)
+        private void xmppCon_OnMessage(object sender, agsXMPP.protocol.client.Message msg)
         {
+            lastMessage = Message.FromMessage(msg);
             if(MessageReceived != null)
             {
-                MessageReceived(this, new MessageEventArgs(msg));
+                MessageReceived(this, new MessageEventArgs(lastMessage));
             }
-            lastMessage = msg;
             messageReceivedEvent.Set();
         }
 
@@ -132,9 +132,9 @@ namespace XmppWrapper
             status = ConnectionStatus.Closed;
         }
 
-        public void SendMessage(Jid to, string subject, string message)
+        public void SendMessage(Identifier to, string subject, string message)
         {
-            var msg = new Message(to, jid, MessageType.chat, message, subject);
+            var msg = new agsXMPP.protocol.client.Message(Identifier.ToJid(to), jid, MessageType.chat, message, subject);
             xmppCon.Send(msg);
         }
 

@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using XmppWrapper;
-using agsXMPP;
-using agsXMPP.protocol.client;
+using Message = XmppWrapper.Message;
 
 namespace XmppWrapperTests
 {
@@ -86,7 +85,7 @@ namespace XmppWrapperTests
             conn.Open();
             WaitForAuthentication(conn);
 
-            conn.SendMessage(new Jid(ValidUserName, Server, null), "donkey", "hello");
+            conn.SendMessage(new Identifier(ValidUserName, Server, null), "donkey", "hello");
             WaitForMessageReceived(conn);
 
             Message lastMessage = conn.LastMessage;
@@ -107,7 +106,7 @@ namespace XmppWrapperTests
                                             lastMessage = args.Message;
                                         };
 
-            conn.SendMessage(new Jid(ValidUserName, Server, null), "donkey", "hello");
+            conn.SendMessage(new Identifier(ValidUserName, Server, null), "donkey", "hello");
             WaitForMessageReceived(conn);
 
             Assert.That(lastMessage.Body, Is.EqualTo("hello"));
