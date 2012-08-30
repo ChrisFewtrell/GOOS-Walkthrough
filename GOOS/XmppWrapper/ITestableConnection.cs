@@ -17,7 +17,7 @@ namespace XmppWrapper
         /// <returns></returns>
         bool WaitForMessageRecieved(int timeToWaitInMilliseconds);
 
-        void ResetMessageReceivedSemaphor();
+        void ResetMessageReceivedSemaphore();
 
         Message LastMessage{get;}
     }

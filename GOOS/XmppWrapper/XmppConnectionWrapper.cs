@@ -68,7 +68,7 @@ namespace XmppWrapper
             return messageReceivedEvent.WaitOne(timeToWaitInMilliseconds);
         }
 
-        void ITestableConnection.ResetMessageReceivedSemaphor()
+        void ITestableConnection.ResetMessageReceivedSemaphore()
         {
             messageReceivedEvent.Reset();
         }
