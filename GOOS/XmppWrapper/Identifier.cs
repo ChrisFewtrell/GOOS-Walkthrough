@@ -10,11 +10,7 @@ namespace XmppWrapper
     {
         public Identifier(string user, string server, string resource)
         {
-            if (user == null)
-            {
-                throw new ArgumentNullException("user");
-            }
-
+            // nb when we receive a message, the user field in the From Jid may be null
             if (server == null)
             {
                 throw new ArgumentNullException("server");
