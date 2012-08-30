@@ -2,7 +2,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Threading;
 using NUnit.Framework;
-using agsXMPP.protocol.client;
+using XmppWrapper;
 
 namespace GOOSTests
 {
@@ -13,7 +13,7 @@ namespace GOOSTests
 
         public void OnMessage(object sender, Message msg)
         {
-            if (msg.Type == MessageType.chat)
+            if (msg != null)
             {
                 messages.Enqueue(msg);
                 messageEvent.Set();

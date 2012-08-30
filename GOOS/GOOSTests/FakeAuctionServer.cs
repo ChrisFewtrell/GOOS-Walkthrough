@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
-using agsXMPP;
-using agsXMPP.protocol.client;
+using XmppWrapper;
 
 namespace GOOSTests
 {
@@ -13,8 +12,7 @@ namespace GOOSTests
         public const string AuctionPassword = "auction";
 
         private readonly string itemId;
-        private readonly XmppClientConnection connection;
-        private string currentChat;
+        private ITestableConnection connection;
         private readonly SingleMessageListener messageListener = new SingleMessageListener();
 
         private readonly ManualResetEvent loginEvent = new ManualResetEvent(false);
@@ -22,31 +20,29 @@ namespace GOOSTests
         public FakeAuctionServer(string item)
         {
             this.itemId = item;
-            connection = new XmppClientConnection(XmppHostname);
+        }
+
+        private string MakeLoginName()
+        {
+            return string.Format(ItemIdAsLogin, itemId);
         }
 
         public void StartSellingItem()
         {
-            connection.OnLogin += ConnectionOnOnLogin;
-            connection.Open(string.Format(ItemIdAsLogin, itemId), AuctionPassword, AuctionResource);
-            connection.OnMessage += messageListener.OnMessage;
-            loginEvent.WaitOne(TimeSpan.FromSeconds(5));
-        }
-
-        private void ConnectionOnOnLogin(object sender)
-        {
-            loginEvent.Set();
+            connection = new ConnectionFactory().CreateConnection(MakeLoginName(), AuctionPassword, XmppHostname);
+            connection.Open();
         }
 
         public void HasReceivedJoinRequestFromSniper()
         {
             messageListener.ReceivesAMessage();
+            // Could also check that connection.LastMessage is not null
         }
 
         public void AnnounceClosed()
         {
             //currentChat.sendMessage(new Message());
-            connection.Send(new Message());
+            connection.SendMessage(null, null, null);
         }
 
         public void Stop()

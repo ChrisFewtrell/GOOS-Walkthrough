@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace GOOSTests
 {
+    /// <summary>
+    /// You need to configure an XMPP login with name "auction-item-54321", password = "auction"
+    /// </summary>
     [TestFixture]
     public class AuctionSniperEndToEndTest
     {
