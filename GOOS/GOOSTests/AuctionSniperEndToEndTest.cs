@@ -3,7 +3,7 @@
 namespace GOOSTests
 {
     /// <summary>
-    /// You need to configure an XMPP login with name "auction-item-54321", password = "auction"
+    /// You need to configure an XMPP login with name "auction-item-54321", password = "auction" - see "example-spring-config.xml"
     /// </summary>
     [TestFixture]
     public class AuctionSniperEndToEndTest
